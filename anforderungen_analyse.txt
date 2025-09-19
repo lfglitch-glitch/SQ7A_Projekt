@@ -1,0 +1,46 @@
+Projekt: Einrichtung von KMU-Diensten (MediaWiki, Nextcloud, GitHub, Portainer)
+Datum: 19.09.2025
+Verantwortlicher: Noé
+
+Arbeitspaket: Anforderungen analysieren & Überblick erstellen
+
+1. Analyse der Anforderungen
+- MediaWiki: Firmeninternes Wiki, erreichbar auf Port 8085, Daten persistent speichern.
+- Nextcloud: Open-Source Filesharing/Collaboration, erreichbar auf Port 8080, Daten persistent speichern.
+- Quellcodeverwaltung: GitHub als zentrale Versionierungsplattform für das Projekt.
+- Monitoring: Portainer zur Überwachung aller Container.
+- Versionierung: Alle Projektdateien + Systemdokumentation werden auf GitHub versioniert.
+
+2. Systemüberblick / Architektur
+- Container-basiert: Docker-Compose für alle Dienste.
+- Netzwerk: Separates Netzwerk "kmudienste_net" für alle KMU-Dienste.
+- Volumes: Persistente Speicherung für MediaWiki, Nextcloud, GitHub-Projektdateien.
+- Ports:
+  - MediaWiki: 8085 -> 80 im Container
+  - Nextcloud: 8080 -> 80 im Container
+  - GitHub: Verwaltung über Webinterface, keine separate Container-DB nötig
+  - Portainer: 9000 -> 9000 im Container
+
+3. IPERKA Umsetzung
+- Informieren: Anforderungen analysiert und dokumentiert.
+- Planen: Gantt-Plan vorbereitet, Arbeitspakete + Abhängigkeiten festgelegt.
+- Entscheiden:
+  - Systemübersicht skizziert (Container, Netzwerke, Volumes, Ports).
+  - Testkonzept vorbereitet (Funktionalität, Persistenz, Monitoring).
+  - Sicherheitsanforderungen definiert (keine Passwörter im Compose-File, Ressourcenlimits, Berechtigungen).
+- Realisieren: docker-compose Grundgerüst vorbereitet.
+- Kontrollieren: Abweichungen vom Plan bei Umsetzung prüfen.
+- Auswerten: Erkenntnisse über Container-Management, Persistenz und Monitoring gesammelt.
+
+4. Systemüberblick (ASCII-Skizze)
+
+[Portainer] --> überwacht alle Container
+[MediaWiki] --> DB-Container (MySQL)
+[Nextcloud] --> DB-Container (MariaDB)
+[GitHub] --> zentrale Projektversionierung
+Alle Container im Netzwerk kmudienste_net, persistente Volumes gemountet
+
+Ergebnis:
+- Anforderungen des Auftraggebers vollständig erfasst.
+- Container-Architektur vorbereitet.
+- Basis für Gantt, docker-compose, Testkonzept und Dokumentation gelegt.
